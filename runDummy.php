@@ -30,6 +30,10 @@ class DummyScript
 
     public static function demo()
     {
+        $s = "XYYYYXYYYYYYX";
+        $are = [];
+        preg_match_all("|YYYY|mis", $s, $are);
+        rslog($are, '$are');
         rslog("DEMO", '"DEMO"');
     }
 }
