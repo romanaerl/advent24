@@ -16,7 +16,7 @@ class def
     function run()
     {
         $ms = hrtime(true);
-        file_put_contents('data/adv61.log', '');
+        file_put_contents('data/adv61-correct.log', '');
 
 //        $this->readArray("data/61.example");
 //        $this->readArray("data/611.example");
@@ -63,7 +63,7 @@ class def
 //                            rslog("$x $y $dir $i $cnt", '"$x $y $dir OBSTACLE [current/total]"');
                             if (true === $this->walkNcount(true)) {
                                 $this->obstacles[$obstX][$obstY] = 1;
-                                file_put_contents("data/adv61.log", "$obstX $obstY $dir $i $cnt \n", FILE_APPEND);
+                                file_put_contents("data/adv61-correct.log", "$obstX $obstY $dir $i $cnt \n", FILE_APPEND);
                                 rslog("LOOPED", '"LOOPED"');
                                 $count++;
                             }
@@ -99,7 +99,7 @@ class def
         $this->visualMatrix[$this->initPosX][$this->initPosY] = '^';
 
 
-        $f = file("data/adv61.log") ;
+        $f = file("data/adv61-correct.log") ;
 
         $count = 0;
         $data = [];

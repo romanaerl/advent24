@@ -39,22 +39,22 @@ class def
                 $i++;
                 foreach ($dirs as $dir) {
 //                    rslog($dir, '$dir');
-//                    $this->visualMatrix[$x][$y] = str_replace(['0','1','2','3'], ['u','r','d','l'], $dir);
+                    $this->visualMatrix[$x][$y] = str_replace(['0','1','2','3'], ['u','r','d','l'], $dir);
                     $this->visited = [];
                     $this->matrix = $matrixBackup;
                     $this->posX = $this->initPosX;
                     $this->posY = $this->initPosY;
                     $this->direction = $this->initDirection;
-                    // obstacle
-                    [$obstRes, $obstX, $obstY] = $this->putObstacle($x,$y,$dir);
-                    if ($obstRes) {
-                        rslog("$x $y $dir $i $cnt", '"$x $y $dir OBSTACLE [current/total]"');
-                        if (true === $this->walkNcount(true)) {
-                            $this->obstacles[$obstX][$obstY] = 1;
-                            rslog("LOOPED", '"LOOPED"');
-                            $count++;
-                        }
-                    }
+//                    // obstacle
+//                    [$obstRes, $obstX, $obstY] = $this->putObstacle($x,$y,$dir);
+//                    if ($obstRes) {
+//                        rslog("$x $y $dir $i $cnt", '"$x $y $dir OBSTACLE [current/total]"');
+//                        if (true === $this->walkNcount(true)) {
+//                            $this->obstacles[$obstX][$obstY] = 1;
+//                            rslog("LOOPED", '"LOOPED"');
+//                            $count++;
+//                        }
+//                    }
                 }
             }
 //            break;
@@ -195,7 +195,7 @@ class def
         $x = 0;
         $y = 0;
         foreach ($file as $one) {
-            $vars = str_split($one);
+            $vars = str_split(trim($one));
             foreach ($vars as $var) {
                 if ($var == "^") {
                     $this->posX = $this->initPosX = $x;
@@ -208,5 +208,9 @@ class def
             $y = 0;
             $x++;
         }
+
+        // Checking edge case
+        $this->matrix[8][58] = 1;
+
     }
 }

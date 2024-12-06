@@ -175,8 +175,10 @@ class def
 //                        rslog("$this->posX $this->posY $this->direction", '"$this->posX $this->posY $this->direction VISITED"');
                     }
                 }
-                if ($returnTRUEIfLooped && $this->isLooped()) {
+                if ($returnTRUEIfLooped && $isLooped) {
                     return true;
+                } else if ($isLooped) {
+                    return $count;
                 }
             } elseif ($result === false) {
                 // change direction
