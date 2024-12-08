@@ -1,6 +1,8 @@
 <?php
 class def
 {
+    const SECONDS_BEFORE_REDOWNLOAD = 15*60;
+
     protected $mat = [];
     protected $memberData = [];
     protected $allStars = [];
@@ -12,14 +14,45 @@ class def
     protected $dayResultsByTs = [];
 
     protected $buffer = [];
+    protected $customFilename;
+
+    function getFilename()
+    {
+        $filename = "data/altLeaderboard.json";
+        if ($this->customFilename && file_exists($this->customFilename)) {
+            $filename = $this->customFilename;
+        }
+        return $filename;
+    }
 
     function code()
     {
-        $filename = "data/altLeaderboard.json";
-        $this->readArray($filename);
-
+        $this->readArray($this->getFilename());
         $this->processStars();
         $this->processScores();
+    }
+
+    function setCustomFilename($filename)
+    {
+        $this->customFilename = $filename;
+        return $this;
+    }
+
+    function reDownload()
+    {
+        $lastUpdated = $this->getLastUpdatedTs();
+        if ((time() - $lastUpdated) > self::SECONDS_BEFORE_REDOWNLOAD) {
+            $opts = array('http' => array('header'=> "Cookie: session=53616c7465645f5fcd5ba18ffe73974188391c842b866cacf96f59766c7888a1775756d7145bae996430c4fd5846ae86bba0d326a6cb9be01c50300c7a14ccc0 \r\n"));
+            $context = stream_context_create($opts);
+            $json = file_get_contents("https://adventofcode.com/2024/leaderboard/private/view/1328271.json", false, $context);
+            file_put_contents($this->customFilename, $json);
+        }
+    }
+
+    function getLastUpdatedTs()
+    {
+        $filename = $this->getFilename();
+        return filemtime($filename);
     }
 
     function printLine($line)
