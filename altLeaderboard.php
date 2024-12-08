@@ -11,6 +11,8 @@ class def
 
     protected $dayResultsByTs = [];
 
+    protected $buffer = [];
+
     function code()
     {
         $filename = "data/altLeaderboard.json";
@@ -18,6 +20,20 @@ class def
 
         $this->processStars();
         $this->processScores();
+    }
+
+    function printLine($line)
+    {
+        if (php_sapi_name() == 'cli') {
+            print($line . "\n");
+        }
+        $this->buffer[] = $line;
+        return $this;
+    }
+
+    function getBuffer()
+    {
+        return $this->buffer;
     }
 
     function processStars()
@@ -61,7 +77,7 @@ class def
                     $memberName = $this->memberData[$mid]['name'];
                     $time = date("H:i:s", $speed);
                     $timeOn = date("Y-m-d H:i:s", $ts);
-                    print("day $day ==> $scoreToAdd goes to $memberName (t2 solved $time after t1 on $timeOn)\n");
+                    $this->printLine("day $day ==> $scoreToAdd goes to $memberName (t2 solved $time after t1 on $timeOn)");
                 }
             }
         }
@@ -78,7 +94,7 @@ class def
         foreach ($reverseScore as $score => $mids) {
             foreach ($mids as $mid) {
                 $midName = $this->memberData[$mid]['name'];
-                print("   Place #$i with Total Score $score goes to =====> $midName\n");
+                $this->printLine("   Place #$i with Total Score $score goes to =====> $midName\n");
                 $i++;
             }
         }

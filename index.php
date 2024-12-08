@@ -1,11 +1,14 @@
 <?php
 include "altLeaderboard.php";
 
-echo "Hello world";
+echo "<h1>AdventOfCode'24 Custom Leaderboard</h1>";
 
 $Def = new def();
 $Def->run();
 
-echo "included";
+foreach ($Def->getBuffer() as $line)
+{
+    echo $line . "<br/>";
+}
 
 ?>
