@@ -38,6 +38,27 @@ class DummyScript
     }
 }
 
+$hrTimers = [];
+
+function addTimer($name, $unique = false)
+{
+    global $hrTimers;
+    $ms = hrtime(true);
+    if ($unique) {
+        $hrTimers[$name] ?? $hrTimers[$name] = '';
+    }
+    $hrTimers[] = [$ms,$name];
+}
+
+function showTimers()
+{
+    global $hrTimers;
+
+    foreach ($hrTimers as $timer) {
+
+    }
+}
+
 function rslog($var, $comment = '') {
     echo "$comment :";
     var_dump($var);
