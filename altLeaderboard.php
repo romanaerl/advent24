@@ -13,7 +13,17 @@ class def
 
     function code()
     {
-        $this->readArray("data/altLeaderboard.json");
+        $filenames = [
+            "data/altLeaderboard.json",
+            "altLeaderboard.json"
+        ];
+        foreach ($filenames as $filename) {
+            if (file_exists($filename)) {
+                $this->readArray($filename);
+                break;
+            }
+        }
+
         $this->processStars();
         $this->processScores();
     }
