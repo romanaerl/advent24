@@ -1,5 +1,5 @@
 <?php
-include "../altLeaderboard.php";
+include "altLeaderboard.php";
 
 echo "Hello world";
 
