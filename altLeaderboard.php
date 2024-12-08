@@ -108,10 +108,10 @@ class def
 
     function run()
     {
-        addTimer("TOTAL");
+//        addTimer("TOTAL");
 
         $this->code();
 
-        showTimers();
+//        showTimers();
     }
 }
