@@ -130,7 +130,8 @@ class def
         foreach ($reverseScore as $score => $mids) {
             foreach ($mids as $mid) {
                 $midName = $this->memberData[$mid]['name'];
-                $this->printLine("<b>#$i ($score) =====> $midName\n</b>");
+                $stars = $this->memberData[$mid]['stars'];
+                $this->printLine("<b>#$i ($score) =====> $midName\n ($stars*)</b>");
                 $i++;
             }
         }
@@ -148,9 +149,7 @@ class def
         $maxStars = 0;
         $this->mat = $mat = json_decode(trim(file_get_contents($filename)), true);
         foreach ($mat['members'] as $mId => $member) {
-            $this->memberData[$mId] = [
-                'name' => $member['name'],
-            ];
+            $this->memberData[$mId] = $member;
             if ((int)$member['stars'] > $maxStars) $maxStars = (int)$member['stars'];
             foreach ($member['completion_day_level'] as $day => $stars) {
                 $day = (int)$day;
