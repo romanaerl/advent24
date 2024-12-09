@@ -128,7 +128,7 @@ class def
         foreach ($reverseScore as $score => $mids) {
             foreach ($mids as $mid) {
                 $midName = $this->memberData[$mid]['name'];
-                $this->printLine("<h3>#$i ($score) =====> $midName\n</h3>");
+                $this->printLine("<b>#$i ($score) =====> $midName\n</b>");
                 $i++;
             }
         }
