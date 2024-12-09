@@ -15,6 +15,7 @@ class def
 
     protected $buffer = [];
     protected $customFilename;
+    protected $allLinesByDay = [];
 
     function getFilename()
     {
@@ -110,7 +111,7 @@ class def
                     $memberName = $this->memberData[$mid]['name'];
                     $time = date("H:i:s", $speed);
                     $timeOn = date("Y-m-d H:i:s", $ts);
-                    $this->printLine("day $day ==> $scoreToAdd goes to $memberName (t2 solved $time after t1 on $timeOn)");
+                    $this->allLinesByDay[$day][] = "$memberName +$scoreToAdd  (t2 solved $time after t1 on $timeOn)";
                 }
             }
         }
@@ -127,8 +128,15 @@ class def
         foreach ($reverseScore as $score => $mids) {
             foreach ($mids as $mid) {
                 $midName = $this->memberData[$mid]['name'];
-                $this->printLine("   Place #$i with Total Score $score goes to =====> $midName\n");
+                $this->printLine("#$i ($score) =====> $midName\n");
                 $i++;
+            }
+        }
+        krsort($this->allLinesByDay);
+        foreach ($this->allLinesByDay as $day => $lines) {
+            $this->printLine("Day $day:");
+            foreach ($lines as $line) {
+                $this->printLine($line);
             }
         }
     }
