@@ -4,10 +4,13 @@ include "altLeaderboard.php";
 echo "<h1>AdventOfCode'24 Custom Leaderboard</h1><br/>";
 
 echo <<<EOF
-This is a version of a leaderboard which counts only a time
-between receiving first and second star, which only compares time
-spend on a task number two, but therefore is not connected to 
-the time participants started their first task. </br></br>
+<div width = 60%>This is a version of a leaderboard which counts only a time
+between receiving first and second star (only compares time
+spend on a task number two in any certain day). <br/>
+The leaderboard therefore is not connected to the time 
+participants started their first task, which makes it possible 
+to get places even if you can not start at midnight EST. </br></br>
+</div>
 EOF;
 
 
