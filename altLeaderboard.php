@@ -128,13 +128,13 @@ class def
         foreach ($reverseScore as $score => $mids) {
             foreach ($mids as $mid) {
                 $midName = $this->memberData[$mid]['name'];
-                $this->printLine("#$i ($score) =====> $midName\n");
+                $this->printLine("<h3>#$i ($score) =====> $midName\n</h3>");
                 $i++;
             }
         }
         krsort($this->allLinesByDay);
         foreach ($this->allLinesByDay as $day => $lines) {
-            $this->printLine("Day $day:");
+            $this->printLine("<h4>Day $day:</h4>");
             foreach ($lines as $line) {
                 $this->printLine($line);
             }
