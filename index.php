@@ -23,7 +23,7 @@ $lastUpdated = date("Y-m-d H:i:s", $lastUpdated);
 
 $Def->reDownload();
 
-echo "<b>Last Updated: $lastUpdated</b><br/>";
+echo "<i>Last Updated: $lastUpdated</i><br/>";
 
 $Def->run();
 
