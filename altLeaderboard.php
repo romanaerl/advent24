@@ -111,7 +111,9 @@ class def
                     $memberName = $this->memberData[$mid]['name'];
                     $time = date("H:i:s", $speed);
                     $timeOn = date("Y-m-d H:i:s", $ts);
-                    $this->allLinesByDay[$day][] = "$memberName +$scoreToAdd  (t2 solved $time after t1 on $timeOn)";
+                    $this->allLinesByDay[$day] ?? $this->allLinesByDay[$day] = [];
+                    $place = count($this->allLinesByDay[$day]) + 1;
+                    $this->allLinesByDay[$day][] = "#$place $memberName +$scoreToAdd  (t2 solved $time after t1 on $timeOn)";
                 }
             }
         }
