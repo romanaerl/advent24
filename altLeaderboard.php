@@ -2,6 +2,7 @@
 class def
 {
     const SECONDS_BEFORE_REDOWNLOAD = 15*60;
+    const SESSION_ADV_ID = "53616c7465645f5fcd5ba18ffe73974188391c842b866cacf96f59766c7888a1775756d7145bae996430c4fd5846ae86bba0d326a6cb9be01c50300c7a14ccc0";
 
     protected $mat = [];
     protected $memberData = [];
@@ -43,7 +44,7 @@ class def
     {
         $lastUpdated = $this->getLastUpdatedTs();
         if ((time() - $lastUpdated) > self::SECONDS_BEFORE_REDOWNLOAD) {
-            $opts = array('http' => array('header'=> "Cookie: session=53616c7465645f5fcd5ba18ffe73974188391c842b866cacf96f59766c7888a1775756d7145bae996430c4fd5846ae86bba0d326a6cb9be01c50300c7a14ccc0 \r\n"));
+            $opts = array('http' => array('header'=> "Cookie: session=" . self::SESSION_ADV_ID . " \r\n"));
             $context = stream_context_create($opts);
             $json = file_get_contents("https://adventofcode.com/2024/leaderboard/private/view/1328271.json", false, $context);
             file_put_contents($this->customFilename, $json);
