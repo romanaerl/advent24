@@ -72,7 +72,7 @@ function createTable(text) {
                 <th>Name</th>
                 <th class="score">Score</th>
                 <th class="time">time span between t1 and t2</th>
-                <th class="time">t1 timestamp</th>
+                <th class="time">t2 timestamp</th>
             </tr>
         </thead>
         <tbody>
