@@ -34,7 +34,7 @@ class def
     {
         $sum = 0;
 
-        if ($val < 10000)
+//        if ($val < 10000)
         if (isset($this->heads[$val][$curCount])) {
             return $this->heads[$val][$curCount];
         }
@@ -62,7 +62,8 @@ class def
             }
         }
 
-        if ($val < 10000) $this->heads[$val][$curCount] = $sum;
+//        if ($val < 10000)
+        $this->heads[$val][$curCount] = $sum;
 
         return $sum;
     }

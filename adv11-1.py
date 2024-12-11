@@ -1,81 +1,94 @@
 import time
+import logging
+
+logging.basicConfig(level=logging.INFO)
+def rslog(value, name):
+    logging.info(f"{name}: {value}")
+
+def add_timer(label):
+    global timers
+    timers[label] = time.time()
+
+def show_timers():
+    global timers
+    for label, start_time in timers.items():
+        elapsed = time.time() - start_time
+        logging.info(f"{label}: {elapsed:.2f} seconds")
+
+timers = {}
 
 class Def:
     def __init__(self):
         self.mat = []
-        self.heads = []
+        self.heads = {}
 
     def code(self):
-        # Увеличение лимита памяти в Python не требуется
         self.read_array("data/11-1.inp")
-        #self.read_array("data/11-1.example")
+        # self.read_array("data/11-1.example")
         self.print_array(self.mat, "INITIAL")
 
+        # for i in range(75):
+        #     rslog(i, '$i')
+        total_sum = self.blink_one_by_one(75 - 1)
+        #     self.print_array(self.mat, f"Iteration {i}:")
 
-        self.mat = [0];
-        sum_result = self.blink_one_by_one(75-1)
-
-        self.rslog(sum_result, '$sum')
+        rslog(total_sum, "$sum")
 
     def blink_one_by_one(self, count):
         total_sum = 0
         for key, val in enumerate(self.mat):
-            self.rslog(key, '$key')
+            rslog(key, "$key")
             total_sum += 1 + self.blink_one(val, count)
         return total_sum
 
     def blink_one(self, val, count, cur_count=0):
         total_sum = 0
 
+        if val in self.heads and cur_count in self.heads[val]:
+            return self.heads[val][cur_count]
+
         if cur_count > count:
-            #self.rslog(val, '$val')
+            # rslog(val, "$val")
             return 0
 
         val = int(val)
-        #self.rslog(val);
         if val == 0:
-            one_summ = self.blink_one(1, count, cur_count + 1)
-            self.heads[0,cur_count] = one_summ;
-            total_sum += one_summ
+            total_sum += self.blink_one(1, count, cur_count + 1)
         else:
-            arr = list(str(val).strip())
+            arr = list(map(int, str(val).strip()))
             if len(arr) % 2 == 0:
                 mid = len(arr) // 2
-                val1 = int("".join(arr[:mid]))
-                val2 = int("".join(arr[mid:]))
-                #self.rslog(val1);
-                #self.rslog(val2);
+                val1 = int("".join(map(str, arr[:mid])))
+                val2 = int("".join(map(str, arr[mid:])))
                 total_sum += 1
                 total_sum += self.blink_one(val1, count, cur_count + 1)
                 total_sum += self.blink_one(val2, count, cur_count + 1)
             else:
                 total_sum += self.blink_one(val * 2024, count, cur_count + 1)
 
+        if val not in self.heads:
+            self.heads[val] = {}
+        self.heads[val][cur_count] = total_sum
+
         return total_sum
 
     def print_array(self, mat, comment="Matrix:"):
-        self.rslog(comment)
-        print(' '.join(map(str, mat)))
+        rslog(comment, "Comment")
+        print(" ".join(map(str, mat)))
 
     def read_array(self, filename):
-        with open(filename, 'r') as f:
+        with open(filename, "r") as f:
             content = f.read().strip()
-        self.mat = list(map(int, content.split()))
+        mat = map(int, content.split(" "))
+        self.mat.extend(mat)
 
     def run(self):
-        self.add_timer("TOTAL")
+        add_timer("TOTAL")
+
         self.code()
-        self.show_timers()
 
-    def rslog(self, message, label=""):
-        print(f"{label}: {message}")
+        show_timers()
 
-    def add_timer(self, label):
-        print(f"Starting timer: {label}")
-
-    def show_timers(self):
-        print("Timers completed")
-
-
-vdef = Def()
-vdef.code()
+if __name__ == "__main__":
+    program = Def()
+    program.run()
