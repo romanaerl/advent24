@@ -1,0 +1,99 @@
+body {
+    background: #0f0f23;
+    color: #cccccc;
+    font-family: "Source Code Pro", monospace;
+    font-weight: 300;
+    font-size: 14pt;
+    min-width: 60em;
+    padding: 12px 0 24px 0;
+}
+
+h1 {
+    color: #00cc00;
+    text-shadow: 0 0 2px #00cc00, 0 0 5px #00cc00;
+    font-size: 36px;
+}
+
+h4 {
+    color: #ffffff;
+    font-style: normal;
+    text-shadow: 0 0 5px #ffffff;
+    font-weight: normal;
+    margin: 32px 0 12px 0;
+}
+
+h3 {
+    margin-top: 42px;
+}
+
+br {
+}
+
+body > div {
+    word-wrap: break-word;
+    width: 80%;
+    word-spacing: normal;
+    text-align: justify;
+}
+
+body > i {
+    width: 80%;
+    display: block;
+    opacity: 1;
+    margin: 0 24px;
+    text-align: right;
+    font-size: 18px;
+    color: #009900;
+    
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 24px;
+}
+th, td {
+    padding: 4px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+th {
+    opacity: 1;
+    background-color: #3a3a6b;
+}
+
+tr {
+    opacity: 0.8;
+}
+tr:nth-child(-n+5) {
+    // background-color: #f9f9f9;
+    opacity: 1;
+}
+tr:nth-child(1) {
+    // background-color: #f9f9f9;
+    opacity: 1;
+    font-weight: bold;
+}
+
+.score {
+    text-align: right;
+    padding-right: 24px;
+    width: 100px;
+}
+
+.time {
+    text-align: center;
+}
+
+.gold {
+    color: gold;
+    text-align: right;
+    padding-right: 24px;
+    width: 100px;
+}
+
+.num {
+    text-align: right;
+    padding-right: 24px;
+    width: 60px;
+}

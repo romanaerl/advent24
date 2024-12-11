@@ -1,5 +1,11 @@
-<?php
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head>
+
+<link rel="stylesheet" href="scores.css">
+
+<body><?php
 include "altLeaderboard.php";
+
+
 
 echo "<h1>AdventOfCode'24 Custom Leaderboard</h1><br/>";
 
@@ -33,3 +39,5 @@ foreach ($Def->getBuffer() as $line)
 }
 
 ?>
+<script src="scores.js"></script>
+</body></html>
