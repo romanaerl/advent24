@@ -13,7 +13,7 @@ def show_timers():
     global timers
     for label, start_time in timers.items():
         elapsed = time.time() - start_time
-        logging.info(f"{label}: {elapsed:.2f} seconds")
+        logging.info(f"{label}: {elapsed:.4f} seconds")
 
 timers = {}
 

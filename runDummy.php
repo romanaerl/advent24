@@ -59,7 +59,7 @@ function showTimers()
     }
 }
 
-function rslog($var, $comment = '') {
+function rslog($var = '', $comment = '') {
     echo "$comment :";
     var_dump($var);
 }
