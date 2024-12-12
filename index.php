@@ -1,6 +1,6 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head>
 
-<link rel="stylesheet" href="scores.css?<?php echo base64_encode(filemtime("scores.css")); ?>">
+<link rel="stylesheet" href="scores.css?<?php echo base64_encode(time()); ?>">
 
 <body><?php
 include "altLeaderboard.php";
@@ -39,5 +39,5 @@ foreach ($Def->getBuffer() as $line)
 }
 
 ?>
-<script src="scores.js?<?php echo base64_encode(filemtime("scores.js")); ?>"></script>
+<script src="scores.js?<?php echo base64_encode(time()); ?>"></script>
 </body></html>
