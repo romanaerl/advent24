@@ -3,7 +3,7 @@ br.values().forEach((it) => it.remove());//it.replaceWith(document.createElement
 
 function createGlobalTable(text) {
     // Регулярное выражение для парсинга строк
-    const regex = /#(?<num>\d+)\s+\((?<score>\d+)\)\s+=====>[\s@]+(?<name>[\w\s]+?)\s+\((?<gold>\d+)\*\)/g;
+    const regex = /#(?<num>\d+)\s+\((?<score>\d+)\)\s+=====>\s+(?<name>[@\w\s]+?)\s+\((?<gold>\d+)\*\)/g;
     
     // Создаем таблицу
     let table = `
