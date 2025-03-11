@@ -22,13 +22,15 @@ class def
     protected $customFilename;
     protected $allLinesByDay = [];
 
+
     function getFilename(int $year)
     {
         $filename = "data/altLeaderboard{YEAR}.json";
+        $filename = str_replace("{YEAR}", trim((string) $year), $filename);
+        
         if ($this->customFilename && file_exists($this->customFilename)) {
             $filename = $this->customFilename;
         }
-        $filename = str_replace("{YEAR}", trim((string) $year), $filename);
         return $filename;
     }
 
@@ -42,6 +44,7 @@ class def
     function setCustomFilename($filename)
     {
         $this->customFilename = $filename;
+        $this->customFilename = str_replace("{YEAR}", $this->getYear(), $this->customFilename);
         return $this;
     }
 
