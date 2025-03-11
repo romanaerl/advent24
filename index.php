@@ -31,7 +31,7 @@ $Def->reDownload();
 
 $year_str = "<a href = '?year={YEAR}'>{BLD}{YEAR}{/BLD}</a> ";
 
-$curYear = $this->getYear();
+$curYear = $Def->getYear();
 $years_str = "";
 foreach ($Def->getValidYears() as $year) {
     $year_one = $year_str;
