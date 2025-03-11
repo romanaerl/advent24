@@ -41,6 +41,7 @@ foreach ($Def->getValidYears() as $year) {
     $year_one = $year_str;
     if ($year == $Def->getYear()) {
         $year_one = str_replace("?year={YEAR}", '', $year_one);
+        $year_one = str_replace("{YEAR}", trim((string)$year), $year_one);
     } else {
         $year_one = str_replace("{YEAR}", trim((string)$year), $year_one);
     }
@@ -48,7 +49,6 @@ foreach ($Def->getValidYears() as $year) {
 }
 
 echo "<h3 width='60%'>YEARS: {$years_str} </h3><br/><br/>";
-echo "<h2 width='60%'>YEAR " . $Def->getYear() . "</h2><br/><br/>";
 echo "<i>Last Updated: $lastUpdated (updates once in 15m)</i><br/><br/>";
 
 $Def->run();
