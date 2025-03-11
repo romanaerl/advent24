@@ -16,7 +16,7 @@ class def
     protected $dayResultsByTs = [];
 
     protected $startYear = 2015;
-    protected $endYear = 2024;
+    public $endYear = 2024;
 
     protected $buffer = [];
     protected $customFilename;

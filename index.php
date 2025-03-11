@@ -40,6 +40,8 @@ $years_str = "";
 foreach ($Def->getValidYears() as $year) {
     $year_one = $year_str;
     if ($year == $Def->getYear()) {
+        $year_one = $year;
+    } else if ($year == $Def->endYear) {
         $year_one = str_replace("?year={YEAR}", '', $year_one);
         $year_one = str_replace("{YEAR}", trim((string)$year), $year_one);
     } else {
