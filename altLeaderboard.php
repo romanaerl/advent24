@@ -51,7 +51,7 @@ class def
         if ((time() - $lastUpdated) > self::SECONDS_BEFORE_REDOWNLOAD) {
             $opts = array('http' => array('header'=> "Cookie: session=" . self::SESSION_ADV_ID . " \r\n"));
             $context = stream_context_create($opts);
-            $json = file_get_contents("https://adventofcode.com/2024/leaderboard/private/view/1328271.json", false, $context);
+            $json = file_get_contents("https://adventofcode.com/" . $this->getYear() . "/leaderboard/private/view/1328271.json", false, $context);
             file_put_contents($this->customFilename, $json);
         }
     }
