@@ -16,7 +16,7 @@ $lastUpdated = date("Y-m-d H:i:s", $lastUpdated);
 
 $Def->reDownload();
 
-$year_str = "<a href = '?year={YEAR}'>{BLD}{YEAR}{/BLD}</a> ";
+$year_str = "<a href = '?year={YEAR}'>{YEAR}</a> ";
 
 $curYear = $Def->getYear();
 
@@ -39,12 +39,6 @@ EOF;
 $years_str = "";
 foreach ($Def->getValidYears() as $year) {
     $year_one = $year_str;
-    if ($year == $curYear) {
-        $year_one = str_replace("{BLD}", "<b>", $year_one);
-        $year_one = str_replace("{/BLD}", "</b>", $year_one);
-    } else {
-        $year_one = "";
-    }
     $year_one = str_replace("{YEAR}", trim((string)$year), $year_one);
     $years_str .= $year_one;
 }
