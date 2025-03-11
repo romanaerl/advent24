@@ -15,22 +15,26 @@ class def
 
     protected $dayResultsByTs = [];
 
+    protected $startYear = 2015;
+    protected $endYear = 2024;
+
     protected $buffer = [];
     protected $customFilename;
     protected $allLinesByDay = [];
 
-    function getFilename()
+    function getFilename(int $year)
     {
-        $filename = "data/altLeaderboard.json";
+        $filename = "data/altLeaderboard{YEAR}.json";
         if ($this->customFilename && file_exists($this->customFilename)) {
             $filename = $this->customFilename;
         }
+        $filename = str_replace("{YEAR}", trim((string) $year), $filename);
         return $filename;
     }
 
     function code()
     {
-        $this->readArray($this->getFilename());
+        $this->readArray($this->getFilename($this->getYear()));
         $this->processStars();
         $this->processScores();
     }
@@ -54,7 +58,7 @@ class def
 
     function getLastUpdatedTs()
     {
-        $filename = $this->getFilename();
+        $filename = $this->getFilename($this->getYear());
         return filemtime($filename);
     }
 
@@ -166,12 +170,29 @@ class def
         ksort($this->allStars);
     }
 
+    function getValidYears()
+    {
+        $years = [];
+        for ($i = $this->startYear; $i <= $this->endYear; $i++) {
+            $years[] = (int)$i;
+        }
+
+        return $years;
+    }
+
+    function getYear()
+    {
+        if (isset($_GET['year']) && in_array((int)$_GET['year'], $this->getValidYears())) {
+            $year = (int)$_GET['year'];
+        } else {
+            $year = $this->endYear;
+        }
+
+        return $year;
+    }
+
     function run()
     {
-//        addTimer("TOTAL");
-
         $this->code();
-
-//        showTimers();
     }
 }

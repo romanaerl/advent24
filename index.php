@@ -20,7 +20,7 @@ to get places even if you can not start at midnight EST. </br></br>
 EOF;
 
 
-$customFilename = "data/downloadedAdventJson.json";
+$customFilename = "data/downloadedAdventJson{YEAR}.json";
 $Def = new def();
 $Def->setCustomFilename($customFilename);
 
@@ -29,6 +29,23 @@ $lastUpdated = date("Y-m-d H:i:s", $lastUpdated);
 
 $Def->reDownload();
 
+$year_str = "<a href = '?year={YEAR}'>{BLD}{YEAR}{/BLD}</a> ";
+
+$curYear = $this->getYear();
+$years_str = "";
+foreach ($Def->getValidYears() as $year) {
+    $year_one = $year_str;
+    if ($year == $curYear) {
+        $year_one = str_replace("{BLD}", "<b>", $year_one);
+        $year_one = str_replace("{/BLD}", "</b>", $year_one);
+    } else {
+        $year_one = str_replace(["{BLD}", "{/BLD}"], "", $year_one);
+    }
+    $year_one = str_replace("{YEAR}", trim((string)$year), $year_one);
+    $years_str .= $year_one;
+}
+
+echo "<div width='60%'>YEARS: {$years_str} </div><br/><br/>";
 echo "<i>Last Updated: $lastUpdated (updates once in 15m)</i><br/><br/>";
 
 $Def->run();
