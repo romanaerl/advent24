@@ -27,7 +27,7 @@ class def
     {
         $filename = "data/altLeaderboard{YEAR}.json";
         $filename = str_replace("{YEAR}", trim((string) $year), $filename);
-        
+
         if ($this->customFilename && file_exists($this->customFilename)) {
             $filename = $this->customFilename;
         }

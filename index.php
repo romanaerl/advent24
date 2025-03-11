@@ -45,7 +45,8 @@ foreach ($Def->getValidYears() as $year) {
     $years_str .= $year_one;
 }
 
-echo "<div width='60%'>YEARS: {$years_str} </div><br/><br/>";
+echo "<h4 width='60%'>YEARS: {$years_str} </h4><br/><br/>";
+echo "<h2 width='60%'>YEAR " . $Def->getYear() . "</h2><br/><br/>";
 echo "<i>Last Updated: $lastUpdated (updates once in 15m)</i><br/><br/>";
 
 $Def->run();
