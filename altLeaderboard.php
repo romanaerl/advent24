@@ -185,6 +185,15 @@ class def
 
     function getYear()
     {
+        $currentYear = (int)date('Y');
+        $currentMonth = (int)date('n');
+        $currentDay = (int)date('j');
+
+        // If it's November 30th or later, allow the current year
+        if ($currentMonth > 11 || ($currentMonth === 11 && $currentDay >= 30)) {
+            $this->endYear = $currentYear;
+        }
+
         if (isset($_GET['year']) && in_array((int)$_GET['year'], $this->getValidYears())) {
             $year = (int)$_GET['year'];
         } else {
