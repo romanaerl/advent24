@@ -2,7 +2,7 @@
 class def
 {
     const SECONDS_BEFORE_REDOWNLOAD = 15*60;
-    const SESSION_ADV_ID = "53616c7465645f5f558265d8e7c5777194a9779d8c530738d28179ddbfdc20695ab77a477cb32d0f956ea7acd543c2cfaa6db66cf3f120693cda0ea099bff5d1";
+    const SESSION_ADV_ID = "53616c7465645f5f558265d8e7c5777194a9779d8c530738d28179ddbfdc20695ab77a477cb32d0f956ea7acd543c2cfaa6db66cf3f120693cda0ea099bff5d1"; // renewed
 
     protected $mat = [];
     protected $memberData = [];
