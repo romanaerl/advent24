@@ -2,7 +2,8 @@
 class def
 {
     const SECONDS_BEFORE_REDOWNLOAD = 15*60;
-    const SESSION_ADV_ID = "53616c7465645f5f558265d8e7c5777194a9779d8c530738d28179ddbfdc20695ab77a477cb32d0f956ea7acd543c2cfaa6db66cf3f120693cda0ea099bff5d1"; // renewed
+//    const SESSION_ADV_ID = "53616c7465645f5f558265d8e7c5777194a9779d8c530738d28179ddbfdc20695ab77a477cb32d0f956ea7acd543c2cfaa6db66cf3f120693cda0ea099bff5d1"; // renewed
+    const SESSION_ADV_ID = "53616c7465645f5f4d5bf26d4ea74172d8d183eac18f6bff7d67fe855400409e4997e300c6ac87f050550c1988b15c605d44e3d982667e23cb9ef9bb850bc3a4";
 
     protected $mat = [];
     protected $memberData = [];
