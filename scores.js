@@ -61,8 +61,9 @@ prevEl.outerHTML = prevEl.outerHTML + table + lastUpdatedHTML;
 
 function createTable(text) {
     // Регулярное выражение для парсинга строк
-    const regex = /#(?<num>\d+)\s+(?<name>[\w\s@]+?)\s+\+(?<diff>\d+)\s+\(t2 solved (?<t2_solved_time>\d{2}:\d{2}:\d{2}) after t1 on (?<t1_solved_time>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\)/g;
-    
+//    const regex = /#(?<num>\d+)\s+(?<name>[\w\s@]+?)\s+\+(?<diff>\d+)\s+\(t2 solved (?<t2_solved_time>\d{2}:\d{2}:\d{2}) after t1 on (?<t1_solved_time>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\)/g;
+    const regex = /#(?<num>\d+)\s+(?<name>[\p{L}\p{N}\s@]+?)\s+\+(?<diff>\d+)\s+\(t2 solved (?<t2_solved_time>\d{2}:\d{2}:\d{2}) after t1 on (?<t1_solved_time>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\)/gu;
+
     // Создаем таблицу
     let table = `
     <table border="1">

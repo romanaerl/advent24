@@ -1,6 +1,6 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head>
 
-<link rel="stylesheet" href="scores.css?<?php echo base64_encode(time()); ?>">
+<link rel="stylesheet" href="scores.css?v=2512-01">
 
 <body><?php
 include "altLeaderboard.php";
@@ -61,5 +61,5 @@ foreach ($Def->getBuffer() as $line)
 }
 
 ?>
-<script src="scores.js?<?php echo base64_encode(time()); ?>"></script>
+<script src="scores.js?v=2512-01"></script>
 </body></html>
