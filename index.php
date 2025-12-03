@@ -1,6 +1,8 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head>
+<?php
+$script_ver = '2512-05';
+?><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head>
 
-<link rel="stylesheet" href="scores.css?v=2512-03">
+<link rel="stylesheet" href="scores.css?v=<?php echo $script_ver; ?>">
 
 <body><?php
 include "altLeaderboard.php";
@@ -61,5 +63,5 @@ foreach ($Def->getBuffer() as $line)
 }
 
 ?>
-<script src="scores.js?v=2512-03"></script>
+<script src="scores.js?v=<?php echo $script_ver; ?>"></script>
 </body></html>
