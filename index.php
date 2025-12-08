@@ -1,5 +1,5 @@
 <?php
-$script_ver = '2512-05';
+$script_ver = '2512-06';
 ?><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head>
 
 <link rel="stylesheet" href="scores.css?v=<?php echo $script_ver; ?>">
