@@ -64,7 +64,7 @@ function createTable(text) {
     // Регулярное выражение для парсинга строк
 //    const regex = /#(?<num>\d+)\s+(?<name>[\w\s@]+?)\s+\+(?<diff>\d+)\s+\(t2 solved (?<t2_solved_time>\d{2}:\d{2}:\d{2}) after t1 on (?<t1_solved_time>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\)/g;
 //     const regex = /#(?<num>\d+)\s+(?<name>[\p{L}\p{N}\s@]+?)\s+\+(?<diff>\d+)\s+\(t2 solved (?<t2_solved_time>\d{2}:\d{2}:\d{2}) after t1 on (?<t1_solved_time>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\)/gu;
-    const regex = /#(?<num>\d+)\s+(?<name>[\p{L}\p{N}\s_@]+?)\s+\+(?<diff>\d+)\s+\(t2 solved (?<t2_solved_time>\d{2}:\d{2}:\d{2}) after t1 on (?<t1_solved_time>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\)/gu;
+    const regex = /#(?<num>\d+)\s+(?<name>[\p{L}\p{N}\s_@]+?)\s+\+(?<diff>\d+)\s+\(t2 solved (?<t2_solved_days>\d) days (?<t2_solved_time>\d{2}:\d{2}:\d{2}) after t1 on (?<t1_solved_time>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\)/gu;
 
 
     // Создаем таблицу
@@ -87,13 +87,14 @@ function createTable(text) {
     
     // Добавляем каждую строку в таблицу
     for (const match of matches) {
-        const {num, name, diff, t2_solved_time, t1_solved_time} = match.groups;
+        const {num, name, diff, t2_solved_days, t2_solved_time, t1_solved_time} = match.groups;
+
         table += `
             <tr>
                 <td class="num">${num}</td>
                 <td>${name.trim()}</td>
                 <td class="score">+${diff}</td>
-                <td class="time">${t2_solved_time}</td>
+                <td class="time">${t2_solved_days} days + ${t2_solved_time}</td>
                 <td class="time">${t1_solved_time}</td>
             </tr>
         `;
