@@ -120,7 +120,7 @@ class def
 
                     $memberName = $this->memberData[$mid]['name'];
                     $days = floor($speed / (60*60*24));
-                    $time = "$days days "date("H:i:s", $speed);
+                    $time = "$days days " . date("H:i:s", $speed);
                     $timeOn = date("Y-m-d H:i:s", $ts);
                     $this->allLinesByDay[$day] ?? $this->allLinesByDay[$day] = [];
                     $place = count($this->allLinesByDay[$day]) + 1;
