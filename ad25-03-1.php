@@ -10,8 +10,6 @@ class Def
     function candidateNumber($digitPos, $lineLen, $linePos, $cand)
     {
         $cand = (int)$cand;
-//        echo(" CAND $cand \r\n");
-//        echo " DigitPos $digitPos \r\n";
 
         $processed = false;
         // check pos allows to continue
@@ -39,7 +37,6 @@ class Def
             for ($i = $this->digits_lenght; $i >= 0; $i--) {
                 $this->digits[$i] = 0;
             }
-//            var_dump($this->digits);
             $line = trim($line);
             $lineLen = strlen($line);
             for ($linePos = 0; $linePos < $lineLen; $linePos++) {
@@ -50,29 +47,14 @@ class Def
                     $line[$linePos]
                 );
 
-//
-//                $processB = true;
-//                $c = (int) $line[$i];
-//                if ($i < strlen($line) - 1) {
-//                    if ($c > $maxA) {
-//                        $maxA = $c;
-//                        $processB = false;
-//                        $maxB = 0;
-//                    }
-//                }
-//                if ($processB) {
-//                    if ($c > $maxB) $maxB = $c;
-//                }
             }
 
-//            var_dump($this->digits);
             $newCand = 0;
             for ($num = $this->digits_lenght-1; $num >= 0; $num--) {
                 $newCand += (10**$num*$this->digits[$num]);
             }
             $sum+=$newCand;
             var_dump($line." ====>  " . $newCand);
-//            break;
         }
 
         $this->inv_summ = $sum;
