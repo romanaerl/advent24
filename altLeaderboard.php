@@ -51,7 +51,7 @@ class def
 
     function getSecondsBeforeDownload() {
 
-        if ($_GET['UPDATE_NOW_PLEASE_MOTHERFUCKER'] == 1) {
+        if ($_GET['ILoveThisLeaderboardVeryMuch'] == 1) {
             return 10;
         }
 
