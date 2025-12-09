@@ -49,10 +49,19 @@ class def
         return $this;
     }
 
+    function getSecondsBeforeDownload() {
+
+        if ($_GET['UPDATE_NOW_PLEASE_MOTHERFUCKER'] == 1) {
+            return 10;
+        }
+
+        return self::SECONDS_BEFORE_REDOWNLOAD;
+    }
+
     function reDownload()
     {
         $lastUpdated = $this->getLastUpdatedTs();
-        if ((time() - $lastUpdated) > self::SECONDS_BEFORE_REDOWNLOAD) {
+        if ((time() - $lastUpdated) > $this->getSecondsBeforeDownload()) {
             $opts = array('http' => array('header'=> "Cookie: session=" . self::SESSION_ADV_ID . " \r\n"));
             $context = stream_context_create($opts);
             $json = file_get_contents("https://adventofcode.com/" . $this->getYear() . "/leaderboard/private/view/1328271.json", false, $context);
