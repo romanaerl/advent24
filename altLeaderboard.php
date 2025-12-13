@@ -181,7 +181,7 @@ class def
 
     function isAiMember($memberId)
     {
-        return isset($this->usersWhoSolveAiOnly[(string)$this->getYear()][$this->memberData[$memberId]['name']]);
+        return !empty($this->usersWhoSolveAiOnly[(string)$this->getYear()][$this->memberData[$memberId]['name']]);
     }
 
     function readArray($filename)
@@ -189,9 +189,9 @@ class def
         $maxStars = 0;
         $this->mat = $mat = json_decode(trim(file_get_contents($filename)), true);
         foreach ($mat['members'] as $mId => $member) {
-            if (!$this->getIncludeAiMembers() && $this->isAiMember($mId)) {
-                continue;
-            }
+//            if (!$this->getIncludeAiMembers() && $this->isAiMember($mId)) {
+//                continue;
+//            }
             $this->memberData[$mId] = $member;
             if ((int)$member['stars'] > $maxStars) $maxStars = (int)$member['stars'];
             foreach ($member['completion_day_level'] as $day => $stars) {
