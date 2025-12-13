@@ -32,8 +32,17 @@ spend on a task number two in any certain day). <br/>
 The leaderboard therefore is not connected to the time 
 participants started their first task, which makes it possible 
 to get places even if you can not start at midnight EST. </br></br>
-</div>
+This leaderboard differentiate between participants who solve tasks using their own coding and problem-solving skills 
+and those who rely heavily on AI tools for rapid automated solutions. 
+While the latter group is excluded from this leaderboard by default, their results can still be viewed via a provided link.</br>
 EOF;
+
+if ($Def->getIncludeAiMembers()) {
+    echo "<a href ='?year=" . $Def->getYear() . "'></br>[hide heavy AI users]</a>";
+} else {
+    echo "<a href ='?year=" . $Def->getYear() . "&includeAi=1'>[show heavy AI users]</a>";
+}
+echo "</div>";
 
 
 
