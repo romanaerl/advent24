@@ -23,12 +23,6 @@ class def
     protected $customFilename;
     protected $allLinesByDay = [];
 
-    protected $usersWhoSolveAiOnly = [
-        '2025' => [
-            'Valeriy Kobzar',
-        ]
-    ];
-
 
     function getFilename(int $year)
     {
@@ -57,7 +51,7 @@ class def
 
     function getSecondsBeforeDownload() {
 
-        if (@$_GET['ILoveThisLeaderboardVeryMuch'] == 1) {
+        if ($_GET['ILoveThisLeaderboardVeryMuch'] == 1) {
             return 10;
         }
 
@@ -133,7 +127,7 @@ class def
                     $this->membersTotalScore[$mid] ?? $this->membersTotalScore[$mid] = 0;
                     $this->membersTotalScore[$mid] += $scoreToAdd;
 
-                    $memberName = $this->getPrintMemberName($mid);
+                    $memberName = $this->memberData[$mid]['name'];
                     $days = floor($speed / (60*60*24));
                     $time = "$days days " . date("H:i:s", $speed);
                     $timeOn = date("Y-m-d H:i:s", $ts);
@@ -155,7 +149,7 @@ class def
         $i = 1;
         foreach ($reverseScore as $score => $mids) {
             foreach ($mids as $mid) {
-                $midName = $this->getPrintMemberName($mid);
+                $midName = $this->memberData[$mid]['name'];
                 $stars = $this->memberData[$mid]['stars'];
                 $this->printLine("<b>#$i ($score) =====> $midName\n ($stars*)</b>");
                 $i++;
@@ -170,28 +164,11 @@ class def
         }
     }
 
-    function getPrintMemberName($mId) {
-        return $this->memberData[$mId]['name'] . $this->isAiMember($mId) ? ' [Heavy AI used]' : '';
-    }
-
-    function getIncludeAiMembers()
-    {
-        return !empty($_GET['includeAi']);
-    }
-
-    function isAiMember($memberId)
-    {
-        return isset($this->usersWhoSolveAiOnly[(string)$this->getYear()][$this->memberData[$memberId]['name']]);
-    }
-
     function readArray($filename)
     {
         $maxStars = 0;
         $this->mat = $mat = json_decode(trim(file_get_contents($filename)), true);
         foreach ($mat['members'] as $mId => $member) {
-            if (!$this->getIncludeAiMembers() && $this->isAiMember($mId)) {
-                continue;
-            }
             $this->memberData[$mId] = $member;
             if ((int)$member['stars'] > $maxStars) $maxStars = (int)$member['stars'];
             foreach ($member['completion_day_level'] as $day => $stars) {
