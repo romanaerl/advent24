@@ -1,5 +1,5 @@
 <?php
-$script_ver = '2512-07';
+$script_ver = '2512-08';
 ?><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head>
 
 <link rel="stylesheet" href="scores.css?v=<?php echo $script_ver; ?>">
@@ -15,8 +15,9 @@ $Def->setCustomFilename($customFilename);
 
 $lastUpdated = $Def->getLastUpdatedTs();
 $lastUpdated = date("Y-m-d H:i:s", $lastUpdated);
-
 $Def->reDownload();
+$lastUpdated = $Def->getLastUpdatedTs();
+$lastUpdated = date("Y-m-d H:i:s", $lastUpdated);
 
 $year_str = "<a href = '?year={YEAR}'>{YEAR}</a> ";
 

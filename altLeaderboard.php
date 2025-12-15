@@ -23,9 +23,21 @@ class def
     protected $customFilename;
     protected $allLinesByDay = [];
 
+    protected $usersWhoSolveAiOnlyId = [
+        2025 => [
+            2714073, // Valeriy Kobzar
+            3437745, // Alexey Rybak
+        ],
+        2024 => [
+            3437745, // Alexey Rybak
+        ],
+    ];
+
+
     protected $usersWhoSolveAiOnly = [
         '2025' => [
             'Valeriy Kobzar',
+            'Alexey Rybak',
         ]
     ];
 
@@ -171,7 +183,8 @@ class def
     }
 
     function getPrintMemberName($mId) {
-        return $this->memberData[$mId]['name'] . $this->isAiMember($mId) ? ' [Heavy AI used]' : '';
+//        var_dump($mId);
+        return $this->memberData[$mId]['name'] . ($this->isAiMember($this->memberData[$mId]['name']) ? ' [HAI]' : '');
     }
 
     function getIncludeAiMembers()
@@ -179,17 +192,30 @@ class def
         return !empty($_GET['includeAi']);
     }
 
-    function isAiMember($memberId)
+    function isAiMember($memberName)
     {
-        return isset($this->usersWhoSolveAiOnly[(string)$this->getYear()][$this->memberData[$memberId]['name']]);
+        $md5 = md5($memberName);
+        $arr = $this->usersWhoSolveAiOnly[$this->getYear()] ?? [];
+        return in_array($md5, $arr);
     }
 
     function readArray($filename)
     {
+        // Init array with md5
+        foreach ($this->usersWhoSolveAiOnly as $year => $arr) {
+            foreach($arr as $nameKey => $name) {
+                $this->usersWhoSolveAiOnly[$year][$nameKey] = md5($name);
+            }
+        }
         $maxStars = 0;
         $this->mat = $mat = json_decode(trim(file_get_contents($filename)), true);
+//        var_dump( json_encode(
+//        $this->mat,
+//        JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+//    ), '$this->mat');
         foreach ($mat['members'] as $mId => $member) {
-            if (!$this->getIncludeAiMembers() && $this->isAiMember($mId)) {
+//            var_dump($this->getIncludeAiMembers(), '$this->getIncludeAiMembers()');
+            if (!$this->getIncludeAiMembers() && $this->isAiMember($member['name'])) {
                 continue;
             }
             $this->memberData[$mId] = $member;
