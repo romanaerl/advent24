@@ -61,7 +61,7 @@ class def
 
     function getSecondsBeforeDownload() {
 
-        if ($_GET['ILoveThisLeaderboardVeryMuch'] == 1) {
+        if (@$_GET['ILoveThisLeaderboardVeryMuch'] == 1) {
             return 10;
         }
 
@@ -137,7 +137,7 @@ class def
                     $this->membersTotalScore[$mid] ?? $this->membersTotalScore[$mid] = 0;
                     $this->membersTotalScore[$mid] += $scoreToAdd;
 
-                    $memberName = $this->memberData[$mid]['name'];
+                    $memberName = $this->getPrintMemberName($mid);
                     $days = floor($speed / (60*60*24));
                     $time = "$days days " . date("H:i:s", $speed);
                     $timeOn = date("Y-m-d H:i:s", $ts);
@@ -159,7 +159,7 @@ class def
         $i = 1;
         foreach ($reverseScore as $score => $mids) {
             foreach ($mids as $mid) {
-                $midName = $this->memberData[$mid]['name'];
+                $midName = $this->getPrintMemberName($mid);
                 $stars = $this->memberData[$mid]['stars'];
                 $this->printLine("<b>#$i ($score) =====> $midName\n ($stars*)</b>");
                 $i++;
@@ -180,7 +180,7 @@ class def
 
     function getIncludeAiMembers()
     {
-        return !empty($_GET['includeAi']);
+        return isset($_GET['includeHAI']);
     }
 
     function isAiMember($memberName)
