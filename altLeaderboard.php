@@ -23,6 +23,16 @@ class def
     protected $customFilename;
     protected $allLinesByDay = [];
 
+    protected $usersWhoSolveAiOnly = [
+        '2025' => [
+            'Valeriy Kobzar',
+            'Alexey Rybak',
+        ],
+        '2024' => [
+            'Alexey Rybak',
+        ],
+    ];
+
 
     function getFilename(int $year)
     {
@@ -164,11 +174,41 @@ class def
         }
     }
 
+    function getPrintMemberName($mId) {
+        return $this->memberData[$mId]['name'] . ($this->isAiMember($this->memberData[$mId]['name']) ? ' [HAI]' : '');
+    }
+
+    function getIncludeAiMembers()
+    {
+        return !empty($_GET['includeAi']);
+    }
+
+    function isAiMember($memberName)
+    {
+        $md5 = md5($memberName);
+        $arr = $this->usersWhoSolveAiOnly[$this->getYear()] ?? [];
+        return in_array($md5, $arr);
+    }
+
+
     function readArray($filename)
     {
+        // Init array with md5
+        foreach ($this->usersWhoSolveAiOnly as $year => $arr) {
+            foreach($arr as $nameKey => $name) {
+                $this->usersWhoSolveAiOnly[$year][$nameKey] = md5($name);
+            }
+        }
         $maxStars = 0;
         $this->mat = $mat = json_decode(trim(file_get_contents($filename)), true);
+//        var_dump( json_encode(
+//        $this->mat,
+//        JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+//    ), '$this->mat');
         foreach ($mat['members'] as $mId => $member) {
+            if (!$this->getIncludeAiMembers() && $this->isAiMember($member['name'])) {
+                continue;
+            }
             $this->memberData[$mId] = $member;
             if ((int)$member['stars'] > $maxStars) $maxStars = (int)$member['stars'];
             foreach ($member['completion_day_level'] as $day => $stars) {
