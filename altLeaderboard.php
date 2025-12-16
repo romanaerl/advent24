@@ -167,7 +167,7 @@ class def
         }
         krsort($this->allLinesByDay);
         foreach ($this->allLinesByDay as $day => $lines) {
-            $this->printLine("<h4>Day $day:</h4>");
+            $this->printLine("<h4><a href='https://adventofcode.com/" . $this->getYear(). "/day/$day' target='_blank'>Day $day:</a></h4>");
             foreach ($lines as $line) {
                 $this->printLine($line);
             }

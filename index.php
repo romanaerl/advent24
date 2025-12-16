@@ -36,7 +36,7 @@ to get places even if you can not start at midnight EST. </br></br>
 This leaderboard differentiate between participants who solve tasks using their own coding and 
 problem-solving skills and those who rely heavily on AI tools for rapid automated solutions. 
 While the latter group is excluded from this leaderboard by default, their results can still be 
-viewed via a provided link. 
+viewed via a provided link. </div></br></br></br>
 EOF;
 
 if (isset($_GET['includeHAI'])) {
@@ -44,7 +44,7 @@ if (isset($_GET['includeHAI'])) {
 } else {
     echo "<a href='?year=" . $Def->getYear() . "&includeHAI'>[show heavy AI users]</a>";
 }
-echo "</div>";
+//echo "</div>";
 
 $years_str = "";
 foreach ($Def->getValidYears() as $year) {

@@ -6,20 +6,29 @@ body {
     font-size: 14pt;
     min-width: 60em;
     padding: 12px 0 24px 0;
+    text-align:center;
 }
 
 h1 {
-    color: #00cc00;
+    color: #000000;
     text-shadow: 0 0 2px #00cc00, 0 0 5px #00cc00;
     font-size: 36px;
 }
 
 h4 {
-    color: #ffffff;
+    color: Gray;
     font-style: normal;
-    text-shadow: 0 0 5px #ffffff;
+    text-shadow: 0 0 5px gray;
     font-weight: normal;
     margin: 32px 0 12px 0;
+}
+
+a {
+    color:gray;
+    text-decoration-line: underline;
+    text-decoration-style: dashed; /* dotted | solid | double | wavy */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
 }
 
 h3 {
@@ -32,6 +41,7 @@ br {
 body > div {
     word-wrap: break-word;
     width: 80%;
+    margin: 0 auto;
     word-spacing: normal;
     text-align: justify;
 }
@@ -40,7 +50,7 @@ body > i {
     width: 80%;
     display: block;
     opacity: 1;
-    margin: 0 24px;
+    margin: 0 auto;
     text-align: right;
     font-size: 18px;
     color: #009900;
@@ -50,7 +60,7 @@ body > i {
 table {
     border-collapse: collapse;
     width: 80%;
-    margin: 24px;
+    margin: 0 auto;
 }
 th, td {
     padding: 4px;
