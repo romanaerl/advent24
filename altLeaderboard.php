@@ -17,7 +17,7 @@ class def
     protected $dayResultsByTs = [];
 
     protected $startYear = 2015;
-    public $endYear = 2024;
+    public $endYear = 2025;
 
     protected $buffer = [];
     protected $customFilename;
@@ -226,12 +226,15 @@ class def
 
     function getValidYears()
     {
-        $years = [];
-        for ($i = $this->startYear; $i <= $this->endYear; $i++) {
-            $years[] = (int)$i;
-        }
 
-        return $years;
+        $years = [];
+        $currentYear = (int) date('Y');
+        $currentMonth = (int) date('n');
+
+        // Include current year only if December has started
+        $endYear = ($currentMonth >= 12) ? $currentYear : $currentYear - 1;
+
+        return range($this->startYear, $endYear);
     }
 
     function getYear()

@@ -16,6 +16,7 @@ def code():
             aa = set( range(a[0],a[1]+1 ))
             bb = set(range(b[0],b[1]+1))
             cc = aa & bb
+
             if len(cc) > 0:
                 total += 1
 
